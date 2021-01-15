@@ -1,23 +1,16 @@
 import React from "react";
-import NominatedContext from "../utils/nominated";
+import MovieContext from "../utils/movieContext";
 
 function NominationList() {
   return (
-      <NominatedContext>
-          {({search, addNomiated, handleClick}) => (
-          <div className="form-group">
-          <p style={{float: 'left'}}
-              onChange={addNomiated}
-              value={search}
-              name="nominated"
-            />
-            <br />
-            <button onClick={handleClick} className="btn btn-danger invisible" style={{height: '30px', width : '10px', float: 'right'}}>
-              X
-            </button>
-          </div>
-          )}
-          </NominatedContext>
+        <MovieContext.Consumer>
+      {({result: {Title}}) => (
+        <div className="text-center">
+          <button className="btn btn-danger" style={{ height: "30px", width: "20px", margin: "0 auto", float: "right"}}>X</button>
+          <p style={{ margin: "0 auto", fontSize: '20px'}}>{Title}</p>
+        </div>
+      )}
+    </MovieContext.Consumer>
   );
 }
 

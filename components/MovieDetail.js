@@ -10,7 +10,7 @@ function MovieDetail() {
           <h3>Director(s): {Director}</h3>
           <h3>Genre: {Genre}</h3>
           <h3>Released: {Released}</h3>
-          <button>Nominate</button>
+          <button className="btn btn-success">Nominate</button>
         </div>
       )}
     </MovieContext.Consumer>

@@ -36,10 +36,10 @@ class OmdbContainer extends Component {
 
   addNominated = query => {
     API.search(query)
-      .then(res => this.setState({ result: res.data }))
+      .then(res => this.setState({ result: res.title }))
   }
-  handleClick = (query) => {
-    API.deleteBook(query).then(() => " ")
+  handleClick = (id) => {
+    API.deleteBook(id).then(() => " ")
 
   }
 
