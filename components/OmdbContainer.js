@@ -4,6 +4,7 @@ import Row from "./Row";
 import Col from "./Col";
 import Card from "./Card";
 import SearchForm from "./SearchForm";
+import NominationList from "./Nomination";
 import MovieDetail from "./MovieDetail";
 import API from "../utils/API";
 import MovieContext from "../utils/movieContext";
@@ -33,11 +34,21 @@ class OmdbContainer extends Component {
     });
   };
 
+  addNominated = query => {
+    API.search(query)
+      .then(res => this.setState({ result: res.data }))
+  }
+  handleClick = (query) => {
+    API.deleteBook(query).then(() => " ")
+
+  }
+
   // When the form is submitted, search the OMDB API for the value of `this.state.search`
   handleFormSubmit = event => {
     event.preventDefault();
     this.searchMovies(this.state.search);
   };
+  
 
   render() {
     return (
@@ -51,16 +62,20 @@ class OmdbContainer extends Component {
       >
         <Container>
           <Row>
+            <Col size="md-4">
+              <Card heading="Search">
+                <SearchForm />
+              </Card>
+              <br/>
+              <Card heading="Nominated">
+                <NominationList />
+              </Card>
+            </Col>
             <Col size="md-8">
               <Card
                 heading={this.state.result.Title || "Search for a Movie to Begin"}
               >
                 {this.state.result.Title ? <MovieDetail /> : <h3>No Results to Display</h3>}
-              </Card>
-            </Col>
-            <Col size="md-4">
-              <Card heading="Search">
-                <SearchForm />
               </Card>
             </Col>
           </Row>

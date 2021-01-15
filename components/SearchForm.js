@@ -3,7 +3,6 @@ import MovieContext from "../utils/movieContext";
 
 function SearchForm() {
   return (
-    // Use consumer to capture state.search and form handler functions
     <MovieContext.Consumer>
       {({search, handleInputChange, handleFormSubmit}) => (
         <form>
