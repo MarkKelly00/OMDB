@@ -12,7 +12,8 @@ import MovieContext from "../utils/movieContext";
 class OmdbContainer extends Component {
   state = {
     result: {},
-    search: ""
+    nominated: "blank",
+    search: "",
   };
 
   // When this component mounts, search for the movie "The Matrix"
@@ -20,44 +21,41 @@ class OmdbContainer extends Component {
     this.searchMovies("The Matrix");
   }
 
-  searchMovies = query => {
+  searchMovies = (query) => {
     API.search(query)
-      .then(res => this.setState({ result: res.data }))
-      .catch(err => console.log(err));
+      .then((res) => this.setState({ result: res.data }))
+      .catch((err) => console.log(err));
   };
 
-  handleInputChange = event => {
+  handleInputChange = (event) => {
     const value = event.target.value;
     const name = event.target.name;
     this.setState({
-      [name]: value
+      [name]: value,
     });
   };
 
-  addNominated = query => {
-    API.search(query)
-      .then(res => this.setState({ result: res.title }))
-  }
+  addNominated = (query) => {
+    API.search(query).then((res) => this.setState({ result: res.title }));
+  };
   handleClick = (id) => {
-    API.deleteBook(id).then(() => " ")
-
-  }
+    API.deleteBook(id).then(() => " ");
+  };
 
   // When the form is submitted, search the OMDB API for the value of `this.state.search`
-  handleFormSubmit = event => {
+  handleFormSubmit = (event) => {
     event.preventDefault();
     this.searchMovies(this.state.search);
   };
-  
 
   render() {
     return (
       // Pass state and the two form handler functions into the provider
-      <MovieContext.Provider 
+      <MovieContext.Provider
         value={{
-          ...this.state, 
-          handleInputChange: this.handleInputChange, 
-          handleFormSubmit: this.handleFormSubmit
+          ...this.state,
+          handleInputChange: this.handleInputChange,
+          handleFormSubmit: this.handleFormSubmit,
         }}
       >
         <Container>
@@ -66,16 +64,22 @@ class OmdbContainer extends Component {
               <Card heading="Search">
                 <SearchForm />
               </Card>
-              <br/>
+              <br />
               <Card heading="Nominated">
-                <NominationList />
+                <NominationList nominated={this.state.nominated} />
               </Card>
             </Col>
             <Col size="md-8">
               <Card
-                heading={this.state.result.Title || "Search for a Movie to Begin"}
+                heading={
+                  this.state.result.Title || "Search for a Movie to Begin"
+                }
               >
-                {this.state.result.Title ? <MovieDetail /> : <h3>No Results to Display</h3>}
+                {this.state.result.Title ? (
+                  <MovieDetail nominated={this.state.nominated}/>
+                ) : (
+                  <h3>No Results to Display</h3>
+                )}
               </Card>
             </Col>
           </Row>
