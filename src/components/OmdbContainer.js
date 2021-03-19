@@ -47,18 +47,22 @@ class OmdbContainer extends Component {
     }
   };
 
-  addNominated = (query) => {
-    API.search(query).then((res) => this.setState({ nominated: res.title }));
-  };
-
-  handleClick = (id) => {
-    API.deleteBook(id).then(() => " ");
-  };
-
   // When the form is submitted, search the OMDB API for the value of `this.state.search`
   handleFormSubmit = (event) => {
     event.preventDefault();
     this.searchMovies(this.state.search);
+  };
+
+  handleClick = () => {
+    let newStateArray = [...this.state.data];
+    if(newStateArray.length > 1) {
+      newStateArray.pop();
+    }
+    this.setState(() => {
+      return {
+        data: newStateArray
+      };
+    });
   };
 
   render() {

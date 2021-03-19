@@ -1,16 +1,37 @@
-import React, { useState } from "react";
-import MovieContext from "../utils/movieContext";
-import MovieDetail from '../components/MovieDetail';
+import React from "react";
+import { useMovieContext } from "../utils/movieContext";
 
-function NominationList(props) {
-  console.log('props are ', props)
-  const { nominated } = props;
-  console.log('the title is ', nominated)
+function NominationList({ nominated }) {
+  const { handleClick } = useMovieContext();
+
   return (
-        <div className="text-center">
-          <button className="btn btn-danger" style={{ height: "30px", width: "20px", margin: "0 auto", float: "right"}}>X</button>
-          <p style={{ margin: "0 auto", fontSize: '20px'}}>{nominated}</p>
-        </div>
+    <div className="text-center">
+      <br />
+      <p style={{ margin: "0 auto", fontSize: "20px" }}>
+        {nominated.map((title, i) => (
+          <li key={i} style={{
+            margin: "0 auto",
+            padding: 1
+          }}>
+            {title}{" "}
+            <button
+              className="btn btn-danger"
+              onClick={handleClick}
+              style={{
+                height: "30px",
+                width: "20px",
+                margin: "0 auto",
+                float: "right",
+                padding: 1
+              }}
+            >
+              X
+            </button>
+          </li>
+        ))}
+      </p>
+      <br />
+    </div>
   );
 }
 

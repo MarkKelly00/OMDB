@@ -7,22 +7,15 @@ const MovieContext = React.createContext({
   search: "",
   nominated: [],
   handleInputChange: () => {},
-  handleFormSubmit: () => {}
+  handleFormSubmit: () => {},
+  handleClick: () => {}
 });
 
-// export function changeNominated(title){
-//   const tempArr = [...MovieContext.nominated]
-  
-//   if(tempArr.length>=5) tempArr.pop()
-
-//   tempArr[tempArr.length] = title
-//   setNominatedArr(tempArr);
-// }
 
 export function useMovieContext(){
-  const { result, search, handleInputChange, handleFormSubmit } = useContext(MovieContext);
+  const { result, search, handleInputChange, handleFormSubmit, handleClick } = useContext(MovieContext);
 
-  return {result, search, handleInputChange, handleFormSubmit}
+  return {result, search, handleInputChange, handleFormSubmit, handleClick}
 }
 
 export default MovieContext;
