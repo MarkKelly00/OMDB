@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Header from "./Header";
 import Container from "./Container";
 import Row from "./Row";
 import Col from "./Col";
@@ -76,6 +77,7 @@ class OmdbContainer extends Component {
           handleClick: this.handleClick,
         }}
       >
+        <Header />
         <Container>
           <Row className='bg-secondary'>
             <Col size="md-4">
