@@ -58,7 +58,7 @@ class OmdbContainer extends Component {
   };
 
   handleClick = (nominated, index) => {
-    if(window.confirm("Are you sure you want to delete this task?")){
+    if(window.confirm("Are you sure you want to delete this nominee?")){
       let title = [...this.state.nominated]
       title.splice(index, 1);
       this.setState({nominated: title})
@@ -73,6 +73,7 @@ class OmdbContainer extends Component {
           ...this.state,
           handleInputChange: this.handleInputChange,
           handleFormSubmit: this.handleFormSubmit,
+          handleClick: this.handleClick
         }}
       >
         <Container>

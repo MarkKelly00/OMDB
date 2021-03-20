@@ -1,8 +1,6 @@
 import React from "react";
-import { useMovieContext } from "../utils/movieContext";
 
-function NominationList({ nominated }) {
-  const { handleClick } = useMovieContext();
+function NominationList({ handleClick, nominated  }) {
 
   return (
     <div className="text-center">
@@ -16,7 +14,7 @@ function NominationList({ nominated }) {
             {title}{" "}
             <button
               className="btn btn-danger"
-              onClick={(e) => { nominated.removeItem(title)}}
+              onClick={() => handleClick(nominated, i)}
               style={{
                 height: "30px",
                 width: "20px",
