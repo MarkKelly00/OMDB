@@ -73,11 +73,11 @@ class OmdbContainer extends Component {
           ...this.state,
           handleInputChange: this.handleInputChange,
           handleFormSubmit: this.handleFormSubmit,
-          handleClick: this.handleClick
+          handleClick: this.handleClick,
         }}
       >
         <Container>
-          <Row>
+          <Row className='bg-secondary'>
             <Col size="md-4">
               <Card heading="Search">
                 <SearchForm />
