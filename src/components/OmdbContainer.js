@@ -11,11 +11,15 @@ import MovieContext from "../utils/movieContext";
 import { useMovieContext } from "../utils/movieContext";
 
 class OmdbContainer extends Component {
-  state = {
-    result: {},
-    nominated: [],
-    search: "",
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      result: {},
+      nominated: [],
+      search: "",
+    }
+    this.handleClick = this.handleClick.bind(this);
+  }
 
   // When this component mounts, search for the movie "The Matrix"
   componentDidMount() {
@@ -53,16 +57,12 @@ class OmdbContainer extends Component {
     this.searchMovies(this.state.search);
   };
 
-  handleClick = () => {
-    let newStateArray = [...this.state.data];
-    if(newStateArray.length > 1) {
-      newStateArray.pop();
-    }
-    this.setState(() => {
-      return {
-        data: newStateArray
-      };
-    });
+  handleClick = (nominated, index) => {
+    if(window.confirm("Are you sure you want to delete this task?")){
+      let title = [...this.state.nominated]
+      title.splice(index, 1);
+      this.setState({nominated: title})
+   }
   };
 
   render() {
@@ -83,7 +83,7 @@ class OmdbContainer extends Component {
               </Card>
               <br />
               <Card heading="Nominated">
-                <NominationList nominated={this.state.nominated} />
+                <NominationList nominated={this.state.nominated} handleClick={this.handleClick} />
               </Card>
             </Col>
             <Col size="md-8">

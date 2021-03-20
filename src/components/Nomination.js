@@ -16,7 +16,7 @@ function NominationList({ nominated }) {
             {title}{" "}
             <button
               className="btn btn-danger"
-              onClick={handleClick}
+              onClick={(e) => { nominated.removeItem(title)}}
               style={{
                 height: "30px",
                 width: "20px",
