@@ -6,7 +6,7 @@ function SearchForm() {
     <MovieContext.Consumer>
       {({search, handleInputChange, handleFormSubmit}) => (
         <form>
-          <div className="form-group">
+          <div className="form-group" style={{marginBottom: "0px"}}>
             <label htmlFor="search">Search:</label>
             <input
               onChange={handleInputChange}
