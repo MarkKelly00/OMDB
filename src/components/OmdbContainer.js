@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { Component } from "react";
 import Container from "./Container";
 import Row from "./Row";
 import Col from "./Col";
@@ -6,9 +6,9 @@ import Card from "./Card";
 import SearchForm from "./SearchForm";
 import NominationList from "./Nomination";
 import MovieDetail from "./MovieDetail";
+import Footer from './Footer';
 import API from "../utils/API";
 import MovieContext from "../utils/movieContext";
-import { useMovieContext } from "../utils/movieContext";
 
 class OmdbContainer extends Component {
   constructor(props) {
@@ -102,6 +102,7 @@ class OmdbContainer extends Component {
             </Col>
           </Row>
         </Container>
+        <Footer />
       </MovieContext.Provider>
     );
   }
