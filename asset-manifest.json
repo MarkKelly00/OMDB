@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/OMDB/static/css/main.efd85c66.chunk.css",
-    "main.js": "/OMDB/static/js/main.21b15030.chunk.js",
-    "main.js.map": "/OMDB/static/js/main.21b15030.chunk.js.map",
+    "main.css": "/OMDB/static/css/main.c7877f0c.chunk.css",
+    "main.js": "/OMDB/static/js/main.8ee9c96c.chunk.js",
+    "main.js.map": "/OMDB/static/js/main.8ee9c96c.chunk.js.map",
     "runtime-main.js": "/OMDB/static/js/runtime-main.d2f04c96.js",
     "runtime-main.js.map": "/OMDB/static/js/runtime-main.d2f04c96.js.map",
     "static/css/2.ae9f1eb3.chunk.css": "/OMDB/static/css/2.ae9f1eb3.chunk.css",
-    "static/js/2.70649d47.chunk.js": "/OMDB/static/js/2.70649d47.chunk.js",
-    "static/js/2.70649d47.chunk.js.map": "/OMDB/static/js/2.70649d47.chunk.js.map",
+    "static/js/2.f5be6c48.chunk.js": "/OMDB/static/js/2.f5be6c48.chunk.js",
+    "static/js/2.f5be6c48.chunk.js.map": "/OMDB/static/js/2.f5be6c48.chunk.js.map",
     "index.html": "/OMDB/index.html",
     "static/css/2.ae9f1eb3.chunk.css.map": "/OMDB/static/css/2.ae9f1eb3.chunk.css.map",
-    "static/css/main.efd85c66.chunk.css.map": "/OMDB/static/css/main.efd85c66.chunk.css.map",
-    "static/js/2.70649d47.chunk.js.LICENSE.txt": "/OMDB/static/js/2.70649d47.chunk.js.LICENSE.txt"
+    "static/css/main.c7877f0c.chunk.css.map": "/OMDB/static/css/main.c7877f0c.chunk.css.map",
+    "static/js/2.f5be6c48.chunk.js.LICENSE.txt": "/OMDB/static/js/2.f5be6c48.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.d2f04c96.js",
     "static/css/2.ae9f1eb3.chunk.css",
-    "static/js/2.70649d47.chunk.js",
-    "static/css/main.efd85c66.chunk.css",
-    "static/js/main.21b15030.chunk.js"
+    "static/js/2.f5be6c48.chunk.js",
+    "static/css/main.c7877f0c.chunk.css",
+    "static/js/main.8ee9c96c.chunk.js"
   ]
 }
