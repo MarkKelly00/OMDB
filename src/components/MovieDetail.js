@@ -8,6 +8,12 @@ function MovieDetail(nominated) {
   console.log('the state is now ', title);
   const {handleInputChange} = useMovieContext();
 
+const disabledBTN = (nominated, title) => {
+  if (nominated.includes(title)) {
+    console.log('Title is already nominated');
+  }
+}
+
 
 
   return (
