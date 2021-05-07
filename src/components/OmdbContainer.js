@@ -41,7 +41,13 @@ class OmdbContainer extends Component {
     if ((name === "nominated")) {
       let tempArr = [...this.state.nominated];
 
-      if (tempArr.length >= 5) tempArr.shift();
+      if (tempArr.length >= 5) {
+        if (window.confirm("Nomination List Is Full, Add New Nominee?")) {
+          tempArr.shift();
+        } else {
+          return tempArr;
+        }
+      }
 
       tempArr[tempArr.length] = value;
       this.setState({[name]: tempArr});
@@ -63,7 +69,7 @@ class OmdbContainer extends Component {
       let title = [...this.state.nominated]
       title.splice(index, 1);
       this.setState({nominated: title})
-   }
+  }
   };
 
   render() {

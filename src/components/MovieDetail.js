@@ -8,11 +8,12 @@ function MovieDetail(nominated) {
   console.log('the state is now ', title);
   const {handleInputChange} = useMovieContext();
 
-const disabledBTN = (nominated, title) => {
-  if (nominated.includes(title)) {
-    console.log('Title is already nominated');
-  }
-}
+// const disabledBTN = (nominated) => {
+//   if (nominated.includes(title)) {
+//     return true;
+//   }
+//   return false;
+// }
 
 
 
@@ -24,7 +25,8 @@ const disabledBTN = (nominated, title) => {
             <h3>Director: {Director}</h3>
             <h3>Genre: {Genre}</h3>
             <h3>Released: {Released}</h3>
-          <button className="btn btn-success" onClick={handleInputChange} name="nominated" value={Title}>Nominate</button>
+            <button className="btn btn-success" onClick={handleInputChange} name="nominated" value={Title}>Nominate</button>
+
         </div>
       )}
     </MovieContext.Consumer>
