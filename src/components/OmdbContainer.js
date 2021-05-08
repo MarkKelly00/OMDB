@@ -33,6 +33,13 @@ class OmdbContainer extends Component {
       .catch((err) => console.log(err));
   };
 
+  disabledBTN = (titleToCheck) => {
+    if (this.state.nominated.includes(titleToCheck)) {
+      return true;
+    }
+    return false;
+  };
+
   handleInputChange = (event) => {
     const value = event.target.value;
     const name = event.target.name;
@@ -102,7 +109,7 @@ class OmdbContainer extends Component {
                 }
               >
                 {this.state.result.Title ? (
-                  <MovieDetail nominated={this.state.nominated} />
+                  <MovieDetail nominated={this.state.nominated} disabledBTN={this.disabledBTN}/>
                 ) : (
                   <h3>No Results to Display</h3>
                 )}

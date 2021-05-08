@@ -1,21 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import MovieContext from "../utils/movieContext";
 import {useMovieContext} from "../utils/movieContext.js"
 
-function MovieDetail(nominated) {
-  console.log('try props ', nominated);
-  const [title, setTitle] = useState(nominated);
-  console.log('the state is now ', title);
+function MovieDetail(nominated, disabledBTN) {
+  // console.log('try props ', nominated);
+  // const [title, setTitle] = useState(nominated);
+  // console.log('the state is now ', title);
   const {handleInputChange} = useMovieContext();
-
-// const disabledBTN = (nominated) => {
-//   if (nominated.includes(title)) {
-//     return true;
-//   }
-//   return false;
-// }
-
-
 
   return (
     <MovieContext.Consumer >
@@ -25,8 +16,7 @@ function MovieDetail(nominated) {
             <h3>Director: {Director}</h3>
             <h3>Genre: {Genre}</h3>
             <h3>Released: {Released}</h3>
-            <button className="btn btn-success" onClick={handleInputChange} name="nominated" value={Title}>Nominate</button>
-
+              <button className="btn btn-success" onClick={handleInputChange} name="nominated" value={Title}>Nominate</button>
         </div>
       )}
     </MovieContext.Consumer>
