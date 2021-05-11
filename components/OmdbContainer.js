@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Header from "./Header";
 import Container from "./Container";
 import Row from "./Row";
 import Col from "./Col";
@@ -6,15 +7,20 @@ import Card from "./Card";
 import SearchForm from "./SearchForm";
 import NominationList from "./Nomination";
 import MovieDetail from "./MovieDetail";
+import Footer from './Footer';
 import API from "../utils/API";
 import MovieContext from "../utils/movieContext";
 
 class OmdbContainer extends Component {
-  state = {
-    result: {},
-    nominated: "blank",
-    search: "",
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      result: {},
+      nominated: [],
+      search: "",
+    }
+    this.handleClick = this.handleClick.bind(this);
+  }
 
   // When this component mounts, search for the movie "The Matrix"
   componentDidMount() {
@@ -30,22 +36,48 @@ class OmdbContainer extends Component {
   handleInputChange = (event) => {
     const value = event.target.value;
     const name = event.target.name;
-    this.setState({
-      [name]: value,
-    });
-  };
 
-  addNominated = (query) => {
-    API.search(query).then((res) => this.setState({ result: res.title }));
-  };
-  handleClick = (id) => {
-    API.deleteBook(id).then(() => " ");
+    // changeNominated(name);
+    if ((name === "nominated")) {
+      let tempArr = [...this.state.nominated];
+
+      if (tempArr.length >= 5) {
+        if (window.confirm("Nomination List Is Full, Add New Nominee?")) {
+          tempArr.shift();
+        } else {
+          return tempArr;
+        }
+      }
+
+      tempArr[tempArr.length] = value;
+      this.setState({[name]: tempArr});
+    } else {
+      this.setState({
+        [name]: value,
+      });
+    }
   };
 
   // When the form is submitted, search the OMDB API for the value of `this.state.search`
   handleFormSubmit = (event) => {
     event.preventDefault();
     this.searchMovies(this.state.search);
+  };
+
+  handleClick = (nominated, index) => {
+    if(window.confirm("Are you sure you want to delete this nominee?")){
+      let title = [...this.state.nominated]
+      title.splice(index, 1);
+      this.setState({nominated: title})
+  }
+  };
+
+  disabledBTN = (Title) => {
+    let string = Title.toString();
+    if (this.state.nominated.includes(string)) {
+      return true;
+    }
+    return false;
   };
 
   render() {
@@ -56,17 +88,19 @@ class OmdbContainer extends Component {
           ...this.state,
           handleInputChange: this.handleInputChange,
           handleFormSubmit: this.handleFormSubmit,
+          handleClick: this.handleClick,
         }}
       >
+        <Header />
         <Container>
-          <Row>
+          <Row className='bg-secondary'>
             <Col size="md-4">
               <Card heading="Search">
                 <SearchForm />
               </Card>
               <br />
               <Card heading="Nominated">
-                <NominationList nominated={this.state.nominated} />
+                <NominationList nominated={this.state.nominated} handleClick={this.handleClick} />
               </Card>
             </Col>
             <Col size="md-8">
@@ -76,7 +110,7 @@ class OmdbContainer extends Component {
                 }
               >
                 {this.state.result.Title ? (
-                  <MovieDetail nominated={this.state.nominated}/>
+                  <MovieDetail nominated={this.state.nominated} disabledBTN={this.disabledBTN} />
                 ) : (
                   <h3>No Results to Display</h3>
                 )}
@@ -84,6 +118,7 @@ class OmdbContainer extends Component {
             </Col>
           </Row>
         </Container>
+        <Footer />
       </MovieContext.Provider>
     );
   }
